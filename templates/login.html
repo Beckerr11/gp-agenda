@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+<section class="login-card">
+  <div class="eyebrow">Área do responsável</div>
+  <h1>Organize a garagem.<br><em>Ganhe tempo.</em></h1>
+  <p>Acesse os horários, os clientes, os orçamentos e o andamento dos serviços em um só lugar.</p>
+  <form method="post" class="stack">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Usuário<input name="username" required autocomplete="username"></label>
+    <label>Senha<input type="password" name="password" required autocomplete="current-password"></label>
+    <button class="primary">Entrar</button>
+  </form>
+</section>
+{% endblock %}

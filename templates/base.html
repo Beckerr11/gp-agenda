@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}GP Agenda{% endblock %} · GP Estética Automotiva</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">GP</span><span>GP <strong>Agenda</strong><small>Estética Automotiva</small></span></a>
+    {% if session.get('user_id') %}
+    <nav aria-label="Navegação principal">
+      <a href="{{ url_for('dashboard') }}">Painel</a>
+      <a href="{{ url_for('customers') }}">Clientes</a>
+      <a href="{{ url_for('services') }}">Serviços</a>
+      <a href="{{ url_for('new_appointment') }}">Novo agendamento</a>
+    </nav>
+    <form method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="text-button">Sair</button></form>
+    {% endif %}
+  </header>
+  <main class="shell">
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="flash {{ category }}" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>GP Agenda · Projeto de Software · MVP</footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Painel{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><div class="eyebrow">Visão geral</div><h1>Agenda e serviços</h1><p>Horários, orçamentos e execução em uma única fila.</p></div>
+  <a class="primary button" href="{{ url_for('new_appointment') }}">+ Novo agendamento</a>
+</div>
+<div class="stats">
+  <div class="stat"><strong>{{ counts.get('agendado', 0) }}</strong><span>Agendados</span></div>
+  <div class="stat"><strong>{{ counts.get('confirmado', 0) }}</strong><span>Confirmados</span></div>
+  <div class="stat"><strong>{{ counts.get('em_execucao', 0) }}</strong><span>Em execução</span></div>
+  <div class="stat"><strong>{{ counts.get('concluido', 0) }}</strong><span>Concluídos</span></div>
+</div>
+<section class="panel">
+  <div class="panel-head"><h2>Ordens de serviço</h2><span>{{ appointments|length }} registros recentes</span></div>
+  {% if appointments %}
+  <div class="table-wrap"><table>
+    <thead><tr><th>Início</th><th>Cliente / veículo</th><th>Serviço</th><th>Orçamento</th><th>Status</th><th>Atualizar</th></tr></thead>
+    <tbody>
+    {% for item in appointments %}
+      <tr>
+        <td><strong>{{ item.starts_at.replace('T', ' ') }}</strong><small>até {{ item.ends_at.replace('T', ' ') }}</small></td>
+        <td><strong>{{ item.customer }}</strong><small>{{ item.vehicle or 'Veículo não informado' }}</small></td>
+        <td>{{ item.service }}</td>
+        <td>{{ item.quoted_cents|brl }}</td>
+        <td><span class="badge {{ item.status }}">{{ item.status.replace('_', ' ') }}</span></td>
+        <td>
+          <form method="post" action="{{ url_for('update_status', appointment_id=item.id) }}" class="inline-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label class="sr-only" for="status-{{ item.id }}">Novo status</label>
+            <select id="status-{{ item.id }}" name="status">
+              {% for status in statuses %}<option value="{{ status }}" {% if status == item.status %}selected{% endif %}>{{ status.replace('_', ' ')|capitalize }}</option>{% endfor %}
+            </select>
+            <button class="small-button">Salvar</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}<div class="empty">Nenhum serviço agendado. Cadastre um cliente, um serviço e comece a organizar a agenda.</div>{% endif %}
+</section>
+{% endblock %}

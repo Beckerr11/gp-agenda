@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orçamento GP-{{ '%04d'|format(quote.id) }} · GP Agenda</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='quote.css') }}">
+</head>
+<body>
+  <main class="sheet">
+    <header class="quote-head">
+      <div class="brand"><span>GP</span><div><strong>GP Estética Automotiva</strong><small>Orçamento de serviço</small></div></div>
+      <div class="head-ref"><b>GP-{{ '%04d'|format(quote.id) }}</b><small>Registrado no GP Agenda</small></div>
+    </header>
+    <div class="accent-line"></div>
+    <section class="intro"><div><span class="eyebrow">PROPOSTA DE ATENDIMENTO</span><h1>Seu veículo,<br>nosso cuidado.</h1></div><p>Detalhes do serviço e valor registrados para este atendimento.</p></section>
+    <section class="grid">
+      <div><span>Cliente</span><strong>{{ quote.customer }}</strong>{% if quote.phone %}<small>{{ quote.phone }}</small>{% endif %}</div>
+      <div><span>Veículo</span><strong>{{ quote.vehicle or 'Não informado' }}</strong></div>
+      <div><span>Data e hora</span><strong>{{ scheduled_for }}</strong></div>
+      <div><span>Situação</span><strong>{{ status_label }}</strong></div>
+    </section>
+    <section class="service"><div><span>SERVIÇO</span><h2>{{ quote.service }}</h2><small>Duração prevista: {{ quote.duration_minutes }} minutos</small></div><strong>{{ quote.quoted_cents|brl }}</strong></section>
+    {% if quote.notes %}<section class="notes"><span>OBSERVAÇÕES</span><p>{{ quote.notes }}</p></section>{% endif %}
+    <div class="total"><span>Valor do orçamento</span><strong>{{ quote.quoted_cents|brl }}</strong></div>
+    <footer><span>GP Estética Automotiva</span><span>Orçamento GP-{{ '%04d'|format(quote.id) }}</span></footer>
+  </main>
+  <div class="screen-actions"><button id="print-quote">Imprimir / salvar PDF</button><a href="{{ url_for('studio') }}">Voltar ao painel</a></div>
+  <script src="{{ url_for('static', filename='quote.js') }}" defer></script>
+</body>
+</html>

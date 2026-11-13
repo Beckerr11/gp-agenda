@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Serviços{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">Catálogo</div><h1>Serviços</h1><p>Defina a duração e o preço base para facilitar o orçamento.</p></div></div>
+<div class="columns">
+  <section class="panel form-panel">
+    <h2>Novo serviço</h2>
+    <form method="post" class="stack">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Nome *<input name="name" maxlength="100" required placeholder="Ex.: lavagem detalhada"></label>
+      <label>Duração (minutos) *<input name="duration_minutes" type="number" min="15" max="1440" step="15" required></label>
+      <label>Preço base (R$) *<input name="base_price" inputmode="decimal" required placeholder="150,00"></label>
+      <button class="primary">Salvar serviço</button>
+    </form>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><h2>Catálogo atual</h2><span>{{ services|length }}</span></div>
+    {% for item in services %}
+      <div class="list-item"><div><strong>{{ item.name }}</strong><small>{{ item.duration_minutes }} minutos</small></div><span>{{ item.base_price_cents|brl }}</span></div>
+    {% else %}<div class="empty">Cadastre o primeiro serviço para montar a agenda.</div>{% endfor %}
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Novo agendamento{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">Nova ordem de serviço</div><h1>Reservar horário</h1><p>O sistema verifica sobreposição com os horários já ocupados.</p></div></div>
+<section class="panel form-panel wide">
+  {% if not customers or not services %}
+    <div class="flash error">Antes de agendar, cadastre pelo menos um <a href="{{ url_for('customers') }}">cliente</a> e um <a href="{{ url_for('services') }}">serviço</a>.</div>
+  {% endif %}
+  <form method="post" class="stack">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Cliente *<select name="customer_id" required><option value="">Selecione</option>{% for item in customers %}<option value="{{ item.id }}">{{ item.name }} · {{ item.vehicle }}</option>{% endfor %}</select></label>
+    <label>Serviço *<select name="service_id" required><option value="">Selecione</option>{% for item in services %}<option value="{{ item.id }}">{{ item.name }} · {{ item.duration_minutes }} min · {{ item.base_price_cents|brl }}</option>{% endfor %}</select></label>
+    <div class="form-grid">
+      <label>Data e hora de início *<input name="starts_at" type="datetime-local" required></label>
+      <label>Orçamento combinado (R$) *<input name="quoted_price" inputmode="decimal" required placeholder="150,00"></label>
+    </div>
+    <label>Observações<textarea name="notes" maxlength="500" rows="3" placeholder="Detalhes do serviço"></textarea></label>
+    <button class="primary" {% if not customers or not services %}disabled{% endif %}>Confirmar agendamento</button>
+  </form>
+</section>
+{% endblock %}
