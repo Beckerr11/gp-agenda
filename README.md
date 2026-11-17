@@ -2,12 +2,14 @@
 
 MVP para a GP Estética Automotiva: clientes, catálogo de serviços, orçamento imprimível por atendimento, agenda sem horários sobrepostos e acompanhamento do status das ordens de serviço.
 
+[Abrir o piloto na Vercel](https://gp-agenda-piloto.vercel.app/studio)
+
 ## Estado do projeto
 
-- Interface React, backend Flask e banco SQLite implementados.
+- Interface React e backend Flask. SQLite no ambiente local e PostgreSQL do Neon no piloto publicado na Vercel.
 - Testes automatizados de autenticação, CSRF, cadastro, orçamento, agendamento, conflito de horários e mudança de status.
-- CI configurada em `.github/workflows/ci.yml`; execução remota depende da publicação do repositório.
-- Conversa inicial presencial com Ronaldo em 12/11/2026 e fotos da garagem coletadas em 17/11/2026. A validação do MVP com Ronaldo está pendente.
+- CI configurada em `.github/workflows/ci.yml`. O [job remoto](https://github.com/Beckerr11/gp-agenda/actions/runs/44120442351) foi barrado antes da execução por uma restrição de faturamento da conta. Os comandos de verificação podem ser executados localmente.
+- Conversa inicial em 12/11/2026 e demonstração no celular com Ronaldo em 17/11/2026. O relatório acadêmico mantém os registros do teste e as fotos autorizadas.
 - Roteiros para registrar essa etapa estão em `docs/registro_de_campo.md` e `docs/validacao_com_ronaldo.md`.
 - O banco local contém somente registros fictícios usados no teste visual e **não** está incluído no pacote.
 
@@ -54,6 +56,10 @@ Configure `DATABASE_URL`, `GP_HTTPS=1` e uma `GP_SECRET_KEY` aleatória de pelo 
 cd frontend
 npm run build
 ```
+
+## Verificar o piloto
+
+Consulte [o endpoint de saúde](https://gp-agenda-piloto.vercel.app/health) para conferir a comunicação entre Flask e Postgres. Para verificar o fluxo, entre com o usuário de teste e cadastre um cliente fictício e um serviço. Reserve um horário e confirme que uma segunda reserva sobreposta é rejeitada. Abra o orçamento, mude o status e recarregue a agenda para conferir a persistência. O PostgreSQL usa um bloqueio de transação para impedir que duas gravações concorrentes aceitem o mesmo intervalo.
 
 ## Estrutura
 
