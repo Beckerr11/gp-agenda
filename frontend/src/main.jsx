@@ -72,8 +72,8 @@ function App() {
   }
   async function logout() {
     try {
-      await api('/api/logout', {});
-      setSession({ authenticated: false, csrf_token: '' });
+      const anonymous = await api('/api/logout', {});
+      setSession(anonymous);
       setData({ customers: [], services: [], appointments: [] });
       setView('overview');
     } catch (e) { notice(e.message, true); }

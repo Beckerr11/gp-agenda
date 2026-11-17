@@ -145,6 +145,24 @@ class GPAgendaTests(unittest.TestCase):
         self.assertEqual(status.status_code, 200)
         self.assertEqual(self.client.get('/api/data').get_json()['appointments'][0]['status'], 'concluido')
 
+    def test_react_can_log_in_again_without_reloading_after_logout(self):
+        credentials = {'username': 'ronaldo', 'password': 'senha-exemplo-123'}
+        first_token = self.client.get('/api/session').get_json()['csrf_token']
+        login = self.client.post('/api/login', json=credentials,
+                                 headers={'X-CSRF-Token': first_token})
+        signed_in_token = login.get_json()['csrf_token']
+        logout = self.client.post('/api/logout', json={},
+                                  headers={'X-CSRF-Token': signed_in_token})
+        self.assertEqual(logout.status_code, 200)
+        anonymous = logout.get_json()
+        self.assertFalse(anonymous['authenticated'])
+        self.assertNotEqual(anonymous['csrf_token'], signed_in_token)
+        self.assertEqual(self.client.get('/api/data').status_code, 401)
+        second_login = self.client.post('/api/login', json=credentials,
+                                        headers={'X-CSRF-Token': anonymous['csrf_token']})
+        self.assertEqual(second_login.status_code, 200)
+        self.assertTrue(second_login.get_json()['authenticated'])
+
 
 if __name__ == '__main__':
     unittest.main()

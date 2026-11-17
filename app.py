@@ -201,7 +201,7 @@ def create_app(test_config: dict | None = None) -> Flask:
     @app.post('/api/logout')
     def api_logout():
         session.clear()
-        return {'ok': True}
+        return {'ok': True, **api_session()}
 
     def api_auth():
         if not session.get('user_id'):
