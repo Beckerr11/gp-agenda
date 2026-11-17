@@ -42,7 +42,7 @@ def create_app(test_config: dict | None = None) -> Flask:
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY=os.environ.get('GP_SECRET_KEY') or secrets.token_hex(32),
-        DATABASE=str(Path(app.instance_path) / 'gp_estetica.sqlite3'),
+        DATABASE=os.environ.get('GP_DATABASE') or str(Path(app.instance_path) / 'gp_estetica.sqlite3'),
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE='Lax',
         SESSION_COOKIE_SECURE=os.environ.get('GP_HTTPS') == '1',
@@ -51,7 +51,7 @@ def create_app(test_config: dict | None = None) -> Flask:
     )
     if test_config:
         app.config.update(test_config)
-    Path(app.instance_path).mkdir(parents=True, exist_ok=True)
+    Path(app.config['DATABASE']).parent.mkdir(parents=True, exist_ok=True)
 
     def db():
         if 'db' not in g:

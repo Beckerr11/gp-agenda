@@ -5,17 +5,17 @@
 **Diagnóstico informado pelo estudante:** conversa presencial em 12/11/2026.  
 **Problemas apontados:** horários, cadastro de clientes, orçamento e controle de serviços.  
 **Prazo exibido no DreamShaper:** 17/11/2026, 23h59.  
-**Estado deste documento:** artefatos técnicos concluídos; evidência de campo, validação com Ronaldo, publicação pública e medição de impacto dependem de ações reais ainda não registradas.
+**Estado deste documento:** piloto local implementado e fotos de campo coletadas. Publicação, validação com Ronaldo e medição de impacto estão pendentes.
 
 ## Experiência Prática I — diagnóstico e planejamento
 
 ### Parceiro e problema
 
-A GP Estética Automotiva atende proprietários de veículos por meio de serviços de estética automotiva. Ronaldo é o contato da organização. Na conversa presencial de 12/11/2026 ele apontou dificuldades em conciliar horários, manter cadastros, registrar orçamentos e acompanhar o status dos serviços. Não foram informados volume de atendimentos, ferramentas atuais ou perdas financeiras; esses dados não são presumidos.
+A GP Estética Automotiva atende proprietários de veículos por meio de serviços de estética automotiva. Ronaldo é o contato da organização. Na conversa presencial de 12/11/2026 ele apontou dificuldades em conciliar horários, manter cadastros, registrar orçamentos e acompanhar o status dos serviços. Segundo o relato complementar de 17/11/2026, os clientes solicitam horários presencialmente e Ronaldo guarda de memória a hora combinada. O volume de atendimentos e as perdas decorrentes desse processo ainda não foram medidos.
 
 ### Método e evidências
 
-A investigação inicial foi uma **conversa exploratória presencial**, sintetizada posteriormente pelo estudante. Não foi fornecida gravação, transcrição literal, foto da garagem ou anotação contemporânea. Um roteiro de validação foi preparado para a próxima visita. O material de campo solicitado pela faculdade deve ser anexado no DreamShaper quando disponível; uma imagem conceitual do software não substitui a evidência da visita.
+A investigação começou com uma **conversa exploratória presencial** em 12/11/2026, sintetizada pelo estudante. Em 17/11/2026 foram registradas duas fotos da garagem, mostrando a área de recebimento dos carros e o espaço de trabalho com ferramentas e insumos. O processo de marcação de memória foi descrito no relato complementar. O uso do GP Agenda será documentado depois de um teste real com Ronaldo.
 
 ### Público e persona
 

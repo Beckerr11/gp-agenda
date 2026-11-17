@@ -1,40 +1,14 @@
-# Registro de campo — visita à GP Estética Automotiva
+# Registro de campo — GP Estética Automotiva
 
-**Visita relatada:** conversa presencial com Ronaldo em 12/11/2026.  
-**Este formulário:** preencher com observações e arquivos reais; nenhum item em branco equivale a evidência coletada.
+## Conversa e rotina de marcação
 
-## Contexto
+Em 12/11/2026, o estudante conversou presencialmente com Ronaldo, responsável pela GP Estética Automotiva. Foram levantadas dificuldades em organizar horários, manter cadastro, elaborar orçamentos e acompanhar serviços.
 
-- Data, horário e duração da observação: __________________
-- Local visitado: __________________
-- Pessoas presentes e funções: __________________
-- Finalidade explicada ao parceiro: __________________
+Em complemento ao diagnóstico, o estudante informou em 17/11/2026 que os clientes procuram a garagem e pedem um horário. Ronaldo combina a hora do atendimento e guarda esse compromisso de memória. O relato explica a ausência de um artefato de agenda para fotografar. A frequência de esquecimentos ou sobreposições ainda precisa ser medida.
 
-## Fluxo atual observado
+## Fotos capturadas em 17/11/2026
 
-1. Como chega um pedido de serviço? __________________
-2. Onde Ronaldo registra nome e telefone do cliente? __________________
-3. Como verifica disponibilidade e tempo de serviço? __________________
-4. Como forma e comunica o orçamento? __________________
-5. Como acompanha o andamento até a entrega? __________________
+- Foto 1. Entrada e área de recebimento de veículos da GP Estética Automotiva, com a identificação do negócio. A foto original contém uma placa de veículo visível.
+- Foto 2. Área interna da garagem, com bancada de ferramentas, equipamento e prateleiras de produtos usados no trabalho.
 
-## Falas e notas
-
-Use aspas apenas para fala registrada literalmente. Para anotações de memória, escreva “síntese posterior”.
-
-| Tema | Fala literal ou síntese posterior | Como foi registrada |
-|---|---|---|
-| Horários | | |
-| Cadastro | | |
-| Orçamento | | |
-| Controle de serviços | | |
-
-## Evidências anexas
-
-| Arquivo | Data de captura | Descrição | Autorização de Ronaldo |
-|---|---|---|---|
-| | | | |
-
-**Observações que mudam o escopo do software:**  
-
-**Próxima ação combinada com Ronaldo:**  
+As imagens documentam o ambiente de atendimento em 17/11/2026. A conversa inicial aconteceu em 12/11/2026. A prova de uso do software será coletada após Ronaldo testar o piloto acessível pelo navegador.
