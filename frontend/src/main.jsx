@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { CalendarDays, UsersRound, Wrench, Plus, LogOut, ArrowRight, Clock3, CarFront, Check, ChevronDown, ReceiptText, Menu, X } from 'lucide-react';
+import { CalendarDays, UsersRound, Wrench, Plus, LogOut, ArrowRight, Clock3, Check, ChevronDown, ReceiptText, Menu, X } from 'lucide-react';
 import CountUp from './components/CountUp';
 import '@fontsource/dm-sans/latin-400.css';
 import '@fontsource/dm-sans/latin-500.css';
@@ -136,7 +136,9 @@ function Login({ session, setSession, load, notice, busy, setBusy, toast }) {
   }
   return <div className="login-layout">
     <div className="login-brand"><div className="brand-icon">GP</div><b>GP Agenda</b></div>
-    <section className="login-story"><div className="story-kicker"><span/> GP Estética Automotiva</div><h1>Seu dia,<br/>em ordem.</h1><p>Do primeiro contato à entrega do carro: horários, clientes e serviços sob controle.</p><div className="story-line"><span>01</span><div></div><span>ATENDIMENTO COM PRECISÃO</span></div><div className="story-silhouette" aria-hidden="true"><CarFront size={330} strokeWidth={0.55}/></div></section>
+    <section className="login-story login-story--official">
+      <img className="login-official-logo" src={import.meta.env.BASE_URL + 'images/gp-estetica-logo.jpg'} alt="Logo oficial da GP Estética Automotiva" width="900" height="1600" fetchPriority="high"/>
+    </section>
     <section className="login-form-area"><div className="login-card"><span className="card-index">ACESSO DO RESPONSÁVEL</span><h2>Bem-vindo de volta.</h2><p>Entre para acompanhar a operação da GP.</p><form onSubmit={submit}><label>Usuário<input autoComplete="username" value={username} onChange={e => setUsername(e.target.value)} required/></label><label>Senha<input type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} required/></label><button className="action" disabled={busy}>Entrar no painel <ArrowRight size={18}/></button></form><small>Acesso restrito à equipe da estética.</small></div></section><Toast toast={toast}/></div>;
 }
 function PageHeader({ eyebrow, title, description, action }) {

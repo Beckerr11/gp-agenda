@@ -2,7 +2,7 @@
 
 **Parceiro:** GP Estética Automotiva  
 **Responsável:** Ronaldo  
-**Aplicação:** GP Agenda, MVP local  
+**Aplicação:** [GP Agenda, piloto na Vercel](https://gp-agenda-piloto.vercel.app/studio)
 **Data da validação:** __________________  
 **Local / meio:** __________________
 
@@ -15,6 +15,7 @@ Este roteiro serve para registrar uma avaliação real com o parceiro. Preencha 
 | Cadastrar um cliente fictício e seu veículo | Cliente aparece na lista | | | |
 | Cadastrar um serviço com duração e preço base | Serviço aparece no catálogo | | | |
 | Criar um horário com orçamento ajustado | Atendimento aparece na agenda | | | |
+| Abrir o orçamento do atendimento | Documento mostra serviço, horário e valor | | | |
 | Tentar criar outro horário no mesmo intervalo | Sistema impede conflito e explica o erro | | | |
 | Mudar o atendimento para “Em execução” e depois “Concluído” | Status é salvo e o painel reflete a mudança | | | |
 

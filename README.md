@@ -33,18 +33,19 @@ Abra `http://127.0.0.1:5059/studio`. A interface antiga de verificação permane
 
 Para o uso real, guarde `GP_SECRET_KEY` de forma persistente e não use a senha de demonstração. O arquivo de dados fica em `instance/gp_estetica.sqlite3`; faça backup desse arquivo antes de atualizar ou mover a aplicação. Para exposição pública, configure HTTPS, `GP_HTTPS=1`, um domínio, monitoramento e armazenamento persistente antes de incluir dados reais de clientes.
 
-## Publicar o piloto para teste
+## Publicar o piloto na Vercel com Neon
 
-O GP Agenda pode rodar como serviço Python no Render. Use o repositório do projeto, configure o plano gratuito e limite a sessão a uma demonstração com registros fictícios, pois o SQLite local nesse plano pode ser recriado num reinício ou novo deploy.
+O Flask roda na Vercel e o PostgreSQL do Neon preserva os dados entre execuções. O modo local continua usando SQLite. Inicialize um banco vazio dedicado ao piloto. Em um ambiente local com as dependências Python instaladas e `DATABASE_URL`, `GP_ADMIN_USER` e `GP_ADMIN_PASSWORD` configuradas, execute:
 
-| Campo | Valor |
-|---|---|
-| Build Command | `pip install -r requirements.txt && npm ci --prefix frontend && npm run build --prefix frontend` |
-| Start Command | `python serve_pilot.py` |
-| Health Check Path | `/health` |
-| Variáveis | `GP_HTTPS=1`, `GP_SECRET_KEY` aleatória, `GP_ADMIN_USER` e `GP_ADMIN_PASSWORD` exclusiva de pelo menos 16 caracteres |
+```powershell
+python -m flask --app app init-db
+python -m flask --app app create-admin
+npm ci --prefix frontend
+npm run build --prefix frontend
+vercel link
+```
 
-Abra `/studio` no endereço HTTPS criado pelo serviço. Confirme `/health`, login, cadastro fictício, rejeição de horário conflitante e abertura do orçamento. O usuário inicial é criado na primeira execução. As variáveis de senha e chave ficam no painel de segredos da hospedagem. Se a aplicação for mantida depois do piloto, configure um disco persistente e `GP_DATABASE=/var/data/gp_estetica.sqlite3` antes de cadastrar clientes reais.
+Configure `DATABASE_URL`, `GP_HTTPS=1` e uma `GP_SECRET_KEY` aleatória de pelo menos 32 caracteres nas variáveis de produção do projeto Vercel. Depois de rodar `vercel deploy --prod`, abra `/studio`. Confira `/health`, login, cadastro fictício, rejeição de um horário conflitante e abertura do orçamento. Use registros fictícios nas sessões de validação.
 
 ## Executar testes
 
@@ -73,4 +74,4 @@ docs/                  artefatos das quatro experiências
 - [Transitions.dev Toast open/close](https://transitions.dev/detail.html?t=toast-open-close) fornece a transição de confirmação em `frontend/src/app.css`.
 - [Flask](https://flask.palletsprojects.com/en/stable/) e [OWASP Password Storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) orientaram a implementação de sessão, cabeçalhos e hash de senha.
 
-O carro na interface é uma imagem editorial gerada para este protótipo. Não representa a garagem real nem um veículo de cliente.
+A tela de login exibe a logo oficial fornecida pelo parceiro. O carro no painel é uma imagem editorial criada para o protótipo.
