@@ -1,0 +1,9 @@
+.git
+.venv
+.env*
+instance
+frontend/node_modules
+screenshots
+docs
+tests
+public
